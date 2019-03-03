@@ -228,7 +228,7 @@ Function New-AzSSMultiBatchRequest {
             elseif($status -eq "Succeeded") {
                 Write-Output "Transctiption id $id succeeded"
                 Write-Output "Writing json for $id to $resultsPath"
-                Get-AzSSBatchResults -subscriptionKey $subscriptionKey -serviceRegion $serviceRegion -id $id -filepath $resultsPath
+                Get-AzSSBatchResults -subscriptionKey $subscriptionKey -uri $id -filepath $resultsPath
                 $keysToRemove += $id
                 $succeededCount++
                 $runningCount--
