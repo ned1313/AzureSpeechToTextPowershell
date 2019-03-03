@@ -213,6 +213,7 @@ Function New-AzSSMultiBatchRequest {
     $runningCount = $ids.Count
     $succeededCount = 0
     $failedCount = 0
+    $waitingCount = 0
     $failedIds = @{}
 
     do{
@@ -232,6 +233,10 @@ Function New-AzSSMultiBatchRequest {
                 $keysToRemove += $id
                 $succeededCount++
                 $runningCount--
+            }
+            elseif($status -eq "NotStarted"){
+                Write-Output "Transctiption id $id has not started yet"
+
             }
             elseif($status -eq "Failed"){
                 Write-Output "Transctiption id $id failed"
